@@ -1428,29 +1428,6 @@
                     if (appleEl) appleEl.href = icon192;
                     if (previewImg) previewImg.src = icon192;
 
-                    // Generar Web App Manifest dinámico con el ícono de libro/libreta
-                    const manifestObj = {
-                        id: 'tanda-catalogos-m3-pwa',
-                        name: 'Tanda de Catálogos',
-                        short_name: 'Tanda Catálogos',
-                        description: 'Control de Tandas de Catálogos, Abonos, Turnos y Pedidos',
-                        start_url: window.location.href.split('#')[0],
-                        scope: './',
-                        display: 'standalone',
-                        orientation: 'portrait',
-                        background_color: '#F2ECF6',
-                        theme_color: '#7A2048',
-                        icons: [
-                            { src: icon192, sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
-                            { src: icon512, sizes: '512x512', type: 'image/png', purpose: 'any maskable' }
-                        ]
-                    };
-
-                    const manifestBlob = new Blob([JSON.stringify(manifestObj)], { type: 'application/manifest+json' });
-                    const manifestUrl = URL.createObjectURL(manifestBlob);
-                    const manifestLink = document.getElementById('pwaManifestLink');
-                    if (manifestLink) manifestLink.href = manifestUrl;
-
                     this.state.pwa.isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 
                     window.addEventListener('beforeinstallprompt', (e) => {
