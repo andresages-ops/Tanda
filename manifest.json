@@ -1,9 +1,9 @@
 {
-  "id": "tanda-catalogos-m3-pwa",
+  "id": "tanda-catalogos-m3-v2",
   "name": "Tanda de Catálogos",
   "short_name": "Tandas",
   "description": "Gestión de Tandas de Catálogos, Abonos, Turnos y Pedidos",
-  "start_url": "./index.html",
+  "start_url": "./index.html?v=2",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
