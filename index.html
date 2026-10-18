@@ -1047,7 +1047,7 @@
     </div>
 
     <script>
-        const STORAGE_KEY = 'tanda_catalogos_m3_v10_data';
+       const STORAGE_KEY = 'tanda_catalogos_m3_v11_data';
 
         const CATEGORY_COLOR_PALETTE = [
             { id: 'amber', name: 'Ámbar', bg: '#FEF3C7', text: '#92400E', border: '#FDE68A' },
@@ -1069,157 +1069,9 @@
         };
 
         const initialData = {
-            activeTandaId: 'tanda-2da-26',
+            activeTandaId: '',
             categories: ['HOGAR', 'VIANNEY', 'INVIERNO', 'INTIMA', 'BEBE'],
-            tandas: [
-                {
-                    id: 'tanda-2da-26',
-                    name: '2DA TANDA 26',
-                    quincenasCount: 10,
-                    startDate: '2026-04-15',
-                    currentQuincena: 8,
-                    graceDays: 2,
-                    status: 'active',
-                    categories: ['HOGAR', 'VIANNEY', 'INVIERNO', 'INTIMA', 'BEBE'],
-                    categoryColors: { ...DEFAULT_CATEGORY_COLORS },
-                    combinedPaymentGroups: [],
-                    notes: [
-                        {
-                            id: 'note-1',
-                            title: 'Entregas de Quincena 8',
-                            content: 'Confirmar con ROCIO horario de entrega de su Edredón de Cuna y Cobertor.',
-                            pinned: true,
-                            updatedAt: '14 oct 2026'
-                        }
-                    ],
-                    participants: [
-                        {
-                            id: 'p-1',
-                            name: 'TERE',
-                            turnNumber: 1,
-                            delivered: true,
-                            products: [
-                                { category: 'INVIERNO', code: '86910', description: 'COBERTOR AUSTRAL MATRIMONIAL', qty: 1, salePrice: 1561.00, wholesalePrice: 1206.15, pending: false }
-                            ],
-                            paymentsPaid: [true, true, true, true, true, true, true, false, false, false],
-                            partialPayments: {},
-                            lastPaymentInfo: { qIndex: 7, amount: 156, date: '30 jul', type: 'full' }
-                        },
-                        {
-                            id: 'p-2',
-                            name: 'KARINA',
-                            turnNumber: 2,
-                            delivered: true,
-                            products: [
-                                { category: 'HOGAR', code: '37102', description: 'EDREDÓN NOVO MATRIMONIAL', qty: 1, salePrice: 995.00, wholesalePrice: 768.78, pending: false },
-                                { category: 'VIANNEY', code: '54219', description: 'JUEGO DE SÁBANAS MICROFIBRA', qty: 1, salePrice: 668.00, wholesalePrice: 516.12, pending: false }
-                            ],
-                            paymentsPaid: [true, true, true, true, true, true, true, false, false, false],
-                            partialPayments: {},
-                            lastPaymentInfo: { qIndex: 7, amount: 166, date: '30 jul', type: 'full' }
-                        },
-                        {
-                            id: 'p-3',
-                            name: 'DANIELA',
-                            turnNumber: 3,
-                            delivered: true,
-                            products: [
-                                { category: 'VIANNEY', code: '71024', description: 'EDREDÓN VIANNEY KING SIZE', qty: 1, salePrice: 1450.00, wholesalePrice: 1120.25, pending: false },
-                                { category: 'HOGAR', code: '19204', description: 'ALMOHADAS CONFORT PAR', qty: 1, salePrice: 693.00, wholesalePrice: 535.42, pending: false }
-                            ],
-                            paymentsPaid: [true, true, true, true, true, true, true, false, false, false],
-                            partialPayments: {},
-                            lastPaymentInfo: { qIndex: 7, amount: 214, date: '30 jul', type: 'full' }
-                        },
-                        {
-                            id: 'p-4',
-                            name: 'ADRIANA',
-                            turnNumber: 4,
-                            delivered: true,
-                            products: [
-                                { category: 'INTIMA', code: '40912', description: 'COLCHA BORDADA MATRIMONIAL', qty: 1, salePrice: 1829.00, wholesalePrice: 1413.09, pending: false }
-                            ],
-                            paymentsPaid: [true, true, true, true, true, true, true, false, false, false],
-                            partialPayments: {},
-                            lastPaymentInfo: { qIndex: 7, amount: 182, date: '30 jul', type: 'full' }
-                        },
-                        {
-                            id: 'p-5',
-                            name: 'MONICA',
-                            turnNumber: 5,
-                            delivered: true,
-                            products: [
-                                { category: 'HOGAR', code: '66310', description: 'JUEGO DE BAÑO Y TOALLAS EGIPCIAS', qty: 2, salePrice: 709.00, wholesalePrice: 547.78, pending: false }
-                            ],
-                            paymentsPaid: [true, true, true, true, true, true, true, false, false, false],
-                            partialPayments: {},
-                            lastPaymentInfo: { qIndex: 7, amount: 141, date: '30 jul', type: 'full' }
-                        },
-                        {
-                            id: 'p-6',
-                            name: 'GERA',
-                            turnNumber: 6,
-                            delivered: true,
-                            products: [
-                                { category: 'INVIERNO', code: '88201', description: 'COBERTOR SIBERIA QUEEN', qty: 1, salePrice: 1738.00, wholesalePrice: 1342.78, pending: false }
-                            ],
-                            paymentsPaid: [true, true, true, true, true, true, true, false, false, false],
-                            partialPayments: {},
-                            lastPaymentInfo: { qIndex: 7, amount: 173, date: '30 jul', type: 'full' }
-                        },
-                        {
-                            id: 'p-7',
-                            name: 'CHAYO',
-                            turnNumber: 7,
-                            delivered: true,
-                            products: [
-                                { category: 'VIANNEY', code: '51908', description: 'EDREDÓN DOBLE VISTA MATRIMONIAL', qty: 1, salePrice: 1858.00, wholesalePrice: 1435.49, pending: false }
-                            ],
-                            paymentsPaid: [true, true, true, true, true, true, true, false, false, false],
-                            partialPayments: {},
-                            lastPaymentInfo: { qIndex: 7, amount: 185, date: '30 jul', type: 'full' }
-                        },
-                        {
-                            id: 'p-8',
-                            name: 'ROCIO',
-                            turnNumber: 8,
-                            delivered: false,
-                            products: [
-                                { category: 'BEBE', code: '90124', description: 'EDREDÓN DE CUNA BORDADO OSITO AZUL', qty: 1, salePrice: 890.00, wholesalePrice: 687.65, pending: false },
-                                { category: 'BEBE', code: '90415', description: 'COBERTOR DE CUNA MICROFIBRA NUBES', qty: 1, salePrice: 494.00, wholesalePrice: 381.66, pending: false }
-                            ],
-                            paymentsPaid: [true, true, true, true, true, true, true, false, false, false],
-                            partialPayments: {},
-                            lastPaymentInfo: { qIndex: 7, amount: 138, date: '30 jul', type: 'full' }
-                        },
-                        {
-                            id: 'p-9',
-                            name: 'LUPITA',
-                            turnNumber: 9,
-                            delivered: false,
-                            products: [
-                                { category: 'VIANNEY', code: '77410', description: 'EDREDÓN JACQUARD KING SIZE', qty: 1, salePrice: 1890.00, wholesalePrice: 1460.20, pending: false },
-                                { category: 'INTIMA', code: '33109', description: 'JUEGO SÁBANAS ALGODÓN 300 HILOS', qty: 1, salePrice: 934.00, wholesalePrice: 721.62, pending: false }
-                            ],
-                            paymentsPaid: [true, true, true, true, true, true, true, false, false, false],
-                            partialPayments: {},
-                            lastPaymentInfo: { qIndex: 7, amount: 282, date: '30 jul', type: 'full' }
-                        },
-                        {
-                            id: 'p-10',
-                            name: 'SILVIA',
-                            turnNumber: 10,
-                            delivered: false,
-                            products: [
-                                { category: 'HOGAR', code: '22819', description: 'CORTINAS BLACKOUT TERMICAS PAR', qty: 2, salePrice: 762.50, wholesalePrice: 589.09, pending: false }
-                            ],
-                            paymentsPaid: [true, true, true, true, true, true, true, false, false, false],
-                            partialPayments: {},
-                            lastPaymentInfo: { qIndex: 7, amount: 152, date: '30 jul', type: 'full' }
-                        }
-                    ]
-                }
-            ]
+            tandas: []
         };
 
         const app = {
@@ -1534,8 +1386,18 @@
                 this.state.activeTandaId = payload.activeTandaId || payload.tandas[0].id;
                 this.state.categories = Array.isArray(payload.categories) && payload.categories.length > 0
                     ? payload.categories
-                    : [...(payload.tandas[0].categories || initialData.tandas[0].categories)];
+                    : [...(payload.tandas[0]?.categories || ['HOGAR', 'VIANNEY', 'INVIERNO', 'INTIMA', 'BEBE'])];
                 this.state.cloud.lastSyncedAt = payload.updatedAtISO || new Date().toISOString();
+
+                // Guarda tu información real en el dispositivo para que abra al instante sin datos ficticios
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                        activeTandaId: this.state.activeTandaId,
+                        categories: this.state.categories,
+                        tandas: this.state.tandas
+                    }));
+                } catch (e) {}
+
                 this.syncActiveTandaCategories();
                 this.renderAll();
                 this.state.cloud.isApplyingRemote = false;
@@ -3340,6 +3202,16 @@ openAuthModal() {
                         ? Math.min(100, Math.max(0, (greenLineSegments / (sum.qTotal - 1)) * 100))
                         : (sum.paidCount > 0 ? 100 : 0);
 
+                    // Si existe una quincena con pago parcial, mostrar cuánto resta de esa quincena en lugar del monto fijo
+                    const partialQIdx = ent.paymentsPaid.findIndex((paid, idx) => !paid && (Number(ent.partialPayments?.[idx]) > 0));
+                    let qRightLabel = `Q: ${this.formatMoney(sum.regularPayment)}`;
+                    if (partialQIdx !== -1) {
+                        const qExpected = (partialQIdx === sum.qTotal - 1) ? sum.lastPayment : sum.regularPayment;
+                        const partialAmt = Number(ent.partialPayments?.[partialQIdx]) || 0;
+                        const qRemaining = Math.max(0, Math.round((qExpected - partialAmt) * 100) / 100);
+                        qRightLabel = `Resta Q${partialQIdx + 1}: ${this.formatMoney(qRemaining)}`;
+                    }
+
                     const lastPay = ent.lastPaymentInfo;
                     const lastPayBanner = lastPay
                         ? `<div class="bg-[#F2EDF5] rounded-2xl px-3 py-2 flex items-center justify-between text-[11px] text-stone-700">
@@ -3380,19 +3252,16 @@ openAuthModal() {
                                 </div>
                             </div>
 
-                            <!-- Barra de progreso + Timeline de Quincenas como en la captura -->
                             <div class="space-y-2.5">
                                 <div class="flex justify-between items-baseline text-xs js-q-row">
                                     <span class="font-bold text-stone-600">Abonado: <strong class="text-[#158050]">${this.formatMoney(sum.amountPaid)}</strong> <span class="text-[11px] text-stone-400">/ ${this.formatMoney(sum.totalSale)}</span></span>
-                                    <span class="text-xs font-extrabold text-m3-primary whitespace-nowrap">Q: ${this.formatMoney(sum.regularPayment)}</span>
+                                    <span class="text-xs font-extrabold ${partialQIdx !== -1 ? 'text-amber-700 bg-amber-100/80 px-2 py-0.5 rounded-lg' : 'text-m3-primary'} whitespace-nowrap">${qRightLabel}</span>
                                 </div>
 
-                                <!-- Barra horizontal sólida de avance -->
                                 <div class="w-full h-2 rounded-full bg-[#E4E1E6] overflow-hidden">
                                     <div class="h-full rounded-full bg-m3-primary transition-all duration-300" style="width: ${sum.progressPercent}%"></div>
                                 </div>
 
-                                <!-- Línea de tiempo con círculos compactos de check verdes y números -->
                                 <div class="relative flex items-center justify-between pt-0.5 px-0.5">
                                     <div class="absolute left-2.5 right-2.5 top-1/2 -translate-y-1/2 h-[2px] bg-[#E4E1E6] rounded-full"></div>
                                     <div class="absolute left-2.5 top-1/2 -translate-y-1/2 h-[2px] bg-[#158050] rounded-full transition-all duration-300" style="width: calc((100% - 20px) * ${timelineGreenPercent / 100})"></div>
@@ -4126,8 +3995,8 @@ openAuthModal() {
                             <div class="space-y-1">
                                 ${entity.memberSummaries.map(ms => `
                                     <div class="flex justify-between text-[11px] bg-white/80 px-2.5 py-1 rounded-xl">
-                                        <span class="font-bold text-stone-800">#${ms.participant.turnNumber} ${this.escapeHtml(ms.participant.name)}</span>
-                                        <span class="font-extrabold text-m3-primary">Q: ${this.formatMoney(ms.summary.regularPayment)} (Total: ${this.formatMoney(ms.summary.totalSale)})</span>
+                                        <span class="font-bold text-stone-800">#${ms.participant.turnNumber}${this.escapeHtml(ms.participant.name)}</span>
+                                        <span class="font-extrabold text-m3-primary">Q: ${this.formatMoney(ms.summary.regularPayment)} (Total:${this.formatMoney(ms.summary.totalSale)})</span>
                                     </div>
                                 `).join('')}
                             </div>
@@ -4168,6 +4037,7 @@ openAuthModal() {
                     const isPaid = Boolean(entity.paymentsPaid[i]);
                     const partialAmt = Number(entity.partialPayments?.[i]) || 0;
                     const isPartial = !isPaid && partialAmt > 0;
+                    const remainingInQ = Math.max(0, Math.round((qAmount - partialAmt) * 100) / 100);
                     const win = this.getQuincenaPaymentWindow(tanda.startDate, i + 1, tanda.graceDays ?? 2);
                     const isOverdue = !isPaid && this.isQuincenaOverdue(tanda, i + 1);
 
@@ -4178,7 +4048,7 @@ openAuthModal() {
                         badgeText = 'Pagado ✓';
                     } else if (isPartial) {
                         btnClass = 'bg-amber-100 border-amber-400 text-amber-950';
-                        badgeText = `Abonó $${partialAmt}`;
+                        badgeText = `Abonó ${this.formatMoney(partialAmt)}`;
                     } else if (isOverdue) {
                         btnClass = 'bg-rose-50 border-rose-300 text-rose-900';
                         badgeText = `Atraso (lím ${win.graceShortText})`;
@@ -4187,17 +4057,22 @@ openAuthModal() {
                         badgeText = `En gracia (lím ${win.graceShortText})`;
                     }
 
+                    // Mostrar cuánto resta por pagar en la tarjeta cuando tiene abono parcial
+                    const cardMainAmountText = isPartial
+                        ? `Resta ${this.formatMoney(remainingInQ)}`
+                        : this.formatMoney(qAmount);
+
                     gridHtml += `
                         <button type="button" onclick="app.toggleSingleQuincenaPayment(${i})"
                             class="tap-scale p-2 rounded-2xl border ${btnClass} flex flex-col items-center justify-center gap-0.5 text-center transition-all">
                             <span class="text-[10px] font-extrabold uppercase opacity-80">Q ${i + 1} • ${win.dueShortText}</span>
-                            <span class="text-xs font-extrabold">${this.formatMoney(qAmount)}</span>
+                            <span class="text-xs font-extrabold">${cardMainAmountText}</span>
                             <span class="text-[9px] font-bold opacity-90 truncate max-w-full">${badgeText}</span>
                         </button>
                     `;
 
                     if (!isPaid) {
-                        optionsHtml += `<option value="${i}">Q ${i + 1} (${win.dueShortText} • Resta ${this.formatMoney(Math.max(0, qAmount - partialAmt))})</option>`;
+                        optionsHtml += `<option value="${i}">Q ${i + 1} (${win.dueShortText} • Resta ${this.formatMoney(remainingInQ)})</option>`;
                     }
                 }
 
@@ -4285,7 +4160,7 @@ openAuthModal() {
                 const amount = Number(inputEl.value);
 
                 if (isNaN(qIndex) || !amount || amount <= 0) {
-                    this.showToast('Ingresa un monto parcial válido');
+                    this.showToast('Ingresa un monto válido');
                     return;
                 }
 
@@ -4294,34 +4169,70 @@ openAuthModal() {
                 if (!entity) return;
 
                 const todayStr = new Date().toLocaleDateString('es-MX', { day: 'numeric', month: 'short' });
+                const qTotal = tanda.quincenasCount || 10;
                 let remainingToDistribute = amount;
+                let completedQuincenasCount = 0;
+                let lastAffectedQ = qIndex + 1;
+                let endedAsPartial = false;
 
-                entity.members.forEach(m => {
-                    const mSum = this.calculateParticipantSummary(m, tanda.quincenasCount, tanda.currentQuincena);
-                    const qExpected = (qIndex === mSum.qTotal - 1) ? mSum.lastPayment : mSum.regularPayment;
-                    if (!m.partialPayments) m.partialPayments = {};
-                    const currentPartial = Number(m.partialPayments[qIndex]) || 0;
-                    const neededForMember = Math.max(0, qExpected - currentPartial);
+                // Orden de aplicación: desde la Q seleccionada en adelante (y si aún sobra, cubre pendientes previas)
+                const quincenaOrder = [];
+                for (let i = qIndex; i < qTotal; i++) quincenaOrder.push(i);
+                for (let i = 0; i < qIndex; i++) quincenaOrder.push(i);
 
-                    const addAmt = Math.min(remainingToDistribute, neededForMember);
-                    remainingToDistribute = Math.max(0, remainingToDistribute - addAmt);
-                    const updatedPartial = Math.round((currentPartial + addAmt) * 100) / 100;
+                for (const q of quincenaOrder) {
+                    if (remainingToDistribute <= 0.009) break;
 
-                    if (updatedPartial >= qExpected - 0.01) {
-                        m.paymentsPaid[qIndex] = true;
-                        delete m.partialPayments[qIndex];
-                    } else if (updatedPartial > 0) {
-                        m.paymentsPaid[qIndex] = false;
-                        m.partialPayments[qIndex] = updatedPartial;
-                    }
-                    m.lastPaymentInfo = { qIndex: qIndex + 1, amount, date: todayStr, type: 'partial' };
-                });
+                    entity.members.forEach(m => {
+                        if (remainingToDistribute <= 0.009) return;
+                        if (m.paymentsPaid[q]) return;
+
+                        const mSum = this.calculateParticipantSummary(m, qTotal, tanda.currentQuincena);
+                        const qExpected = (q === mSum.qTotal - 1) ? mSum.lastPayment : mSum.regularPayment;
+                        if (!m.partialPayments) m.partialPayments = {};
+
+                        const currentPartial = Number(m.partialPayments[q]) || 0;
+                        const neededForMember = Math.max(0, Math.round((qExpected - currentPartial) * 100) / 100);
+                        if (neededForMember <= 0) return;
+
+                        const addAmt = Math.min(remainingToDistribute, neededForMember);
+                        remainingToDistribute = Math.max(0, Math.round((remainingToDistribute - addAmt) * 100) / 100);
+                        const updatedPartial = Math.round((currentPartial + addAmt) * 100) / 100;
+
+                        lastAffectedQ = q + 1;
+
+                        if (updatedPartial >= qExpected - 0.01) {
+                            m.paymentsPaid[q] = true;
+                            delete m.partialPayments[q];
+                            completedQuincenasCount++;
+                            endedAsPartial = false;
+                        } else if (updatedPartial > 0) {
+                            m.paymentsPaid[q] = false;
+                            m.partialPayments[q] = updatedPartial;
+                            endedAsPartial = true;
+                        }
+
+                        m.lastPaymentInfo = {
+                            qIndex: lastAffectedQ,
+                            amount: amount,
+                            date: todayStr,
+                            type: endedAsPartial ? 'partial' : 'full'
+                        };
+                    });
+                }
 
                 inputEl.value = '';
                 this.saveToStorage();
                 this.renderPaymentsModalContent();
                 this.renderAll();
-                this.showToast(`Abono parcial de ${this.formatMoney(amount)} registrado en Q ${qIndex + 1}`);
+
+                if (completedQuincenasCount > 0 && endedAsPartial) {
+                    this.showToast(`Se liquidó Q y el resto se abonó a Q ${lastAffectedQ}`);
+                } else if (completedQuincenasCount > 0) {
+                    this.showToast(`¡Quincena cubierta por completo con el abono!`);
+                } else {
+                    this.showToast(`Abono parcial de ${this.formatMoney(amount)} registrado en Q ${lastAffectedQ}`);
+                }
             },
 
             editParticipantFromPaymentsModal() {
@@ -4673,6 +4584,15 @@ openAuthModal() {
                         p.products.splice(action.prodIndex, 1);
                         this.showToast('Artículo eliminado del pedido');
                     }
+                } else if (action.type === 'tanda') {
+                    if (this.state.tandas.length <= 1) {
+                        this.closeDeleteConfirmModal();
+                        this.showToast('Debes conservar al menos una tanda activa');
+                        return;
+                    }
+                    this.state.tandas = this.state.tandas.filter(t => t.id !== action.tandaId);
+                    this.state.activeTandaId = this.state.tandas[0].id;
+                    this.showToast('Tanda eliminada correctamente');
                 }
 
                 this.closeDeleteConfirmModal();
@@ -4815,12 +4735,12 @@ openAuthModal() {
                     return;
                 }
                 const tanda = this.getActiveTanda();
-                this.state.tandas = this.state.tandas.filter(t => t.id !== tanda.id);
-                this.state.activeTandaId = this.state.tandas[0].id;
-                this.saveToStorage();
+                if (!tanda) return;
                 this.closeTandaConfigModal();
-                this.renderAll();
-                this.showToast('Tanda eliminada');
+                this.state.pendingDeleteAction = { type: 'tanda', tandaId: tanda.id };
+                document.getElementById('deleteConfirmTitle').textContent = `¿Eliminar "${tanda.name}"?`;
+                document.getElementById('deleteConfirmMessage').textContent = `Se borrarán permanentemente los ${tanda.participants.length} participantes, pedidos y abonos de esta tanda.`;
+                this.openModalWithHistory('deleteConfirm', 'deleteConfirmModal');
             },
 
             exportActiveTandaJson() {
