@@ -1,0 +1,20 @@
+{
+  "id": "tanda-catalogos-m3-pwa",
+  "name": "Tanda de Catálogos",
+  "short_name": "Tandas",
+  "description": "Gestión de Tandas de Catálogos, Abonos, Turnos y Pedidos",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F2ECF6",
+  "theme_color": "#7A2048",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
