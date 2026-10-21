@@ -228,6 +228,22 @@
 
                 <!-- Contenido Habitual de Inicio -->
                 <div id="overviewDefaultContent" class="space-y-3.5">
+                   <!-- 3. NOTAS FIJADAS EN INICIO (NUEVO) -->
+                    <section id="pinnedNotesOverviewSection" class="space-y-2 hidden" aria-label="Notas fijadas">
+                        <div class="flex items-center justify-between px-1 gap-2">
+                            <div class="flex items-center gap-1.5 min-w-0">
+                                <span class="material-symbols-rounded text-sm text-m3-primary shrink-0">keep</span>
+                                <h2 class="text-xs font-extrabold uppercase tracking-wider text-stone-600 whitespace-nowrap">NOTAS FIJADAS</h2>
+                                <span id="pinnedNotesHeaderCounter" class="text-[10px] font-extrabold px-1.5 py-0.2 rounded-full bg-m3-primaryContainer text-m3-primary whitespace-nowrap shrink-0">0</span>
+                            </div>
+                            <button type="button" onclick="app.switchTab('notes')" class="text-[11px] font-bold text-m3-primary whitespace-nowrap shrink-0 flex items-center gap-0.5">
+                                <span class="material-symbols-rounded text-xs">sticky_note_2</span>
+                                <span>Ir a notas →</span>
+                            </button>
+                        </div>
+                        <div id="pinnedNotesOverviewContainer" class="space-y-2"></div>
+                    </section>
+                    
                     <!-- 1. SIGUIENTE ENTREGA -->
                     <section class="space-y-2" aria-label="Próximas entregas">
                         <div class="flex items-center justify-between px-0.5 gap-2">
@@ -250,7 +266,7 @@
                         <div class="flex items-center justify-between px-1 gap-2">
                             <button type="button" onclick="app.togglePendingProductsAccordion()" class="tap-scale flex items-center gap-1.5 text-left group min-w-0">
                                 <span class="material-symbols-rounded text-sm text-amber-600 shrink-0">hourglass_top</span>
-                                <h2 class="text-xs font-extrabold uppercase tracking-wider text-stone-600 group-hover:text-stone-900 whitespace-nowrap">PENDIENTES</h2>
+                                <h2 class="text-xs font-extrabold uppercase tracking-wider text-amber-900 group-hover:text-stone-900 whitespace-nowrap">PENDIENTES</h2>
                                 <span id="pendingProdHeaderCounter" class="text-[10px] font-extrabold px-1.5 py-0.2 rounded-full bg-amber-100 text-amber-900 whitespace-nowrap shrink-0">0</span>
                                 <span id="pendingProdHeaderChevron" class="material-symbols-rounded text-base text-stone-400 transition-transform duration-200 shrink-0">expand_more</span>
                             </button>
@@ -267,7 +283,7 @@
                         <div class="flex items-center justify-between px-1 gap-2">
                             <button type="button" onclick="app.toggleOverdueAccordion()" class="tap-scale flex items-center gap-1.5 text-left group min-w-0">
                                 <span class="material-symbols-rounded text-sm text-rose-600 shrink-0">notification_important</span>
-                                <h2 class="text-xs font-extrabold uppercase tracking-wider text-stone-600 group-hover:text-stone-900 whitespace-nowrap">ALERTAS</h2>
+                                <h2 class="text-xs font-extrabold uppercase tracking-wider text-rose-900 group-hover:text-stone-900 whitespace-nowrap">ALERTAS</h2>
                                 <span id="overdueHeaderCounter" class="hidden text-[10px] font-extrabold px-1.5 py-0.2 rounded-full bg-rose-100 text-rose-800 whitespace-nowrap shrink-0">0</span>
                                 <span id="overdueHeaderChevron" class="material-symbols-rounded text-base text-stone-400 transition-transform duration-200 shrink-0">expand_more</span>
                             </button>
@@ -930,7 +946,7 @@
                         </div>
                         <div>
                             <h3 class="text-base font-extrabold text-stone-900">Exportar Pedidos para Tienda</h3>
-                            <p class="text-[11px] text-stone-500">Fecha, Categoría, Código, Cantidad y Descripción</p>
+                            <p class="text-[11px] text-stone-500">Filtra por entrega, nombre, # turno o categoría</p>
                         </div>
                     </div>
                     <button type="button" onclick="app.closeExportModal()" class="w-9 h-9 rounded-full bg-m3-surfaceVariant text-stone-600 flex items-center justify-center tap-scale">
@@ -938,10 +954,38 @@
                     </button>
                 </div>
 
+                <!-- Botones rápidos de estado -->
                 <div class="flex gap-1.5 overflow-x-auto no-scrollbar shrink-0">
                     <button type="button" id="exportScope-pending" onclick="app.setExportScope('pending')" class="tap-scale px-3 py-1.5 rounded-full text-xs font-bold bg-m3-primary text-white">Por Entregar</button>
                     <button type="button" id="exportScope-next" onclick="app.setExportScope('next')" class="tap-scale px-3 py-1.5 rounded-full text-xs font-bold bg-m3-surfaceVariant text-stone-700">Siguiente Turno</button>
                     <button type="button" id="exportScope-all" onclick="app.setExportScope('all')" class="tap-scale px-3 py-1.5 rounded-full text-xs font-bold bg-m3-surfaceVariant text-stone-700">Todos</button>
+                </div>
+
+                <!-- Filtros específicos: Por Nombre, Por # Turno y Por Categoría -->
+                <div class="bg-white rounded-2xl p-3 border border-purple-900/10 space-y-2 shrink-0">
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="space-y-1 min-w-0">
+                            <label class="text-[10px] font-extrabold uppercase text-stone-500 block truncate">Por Nombre</label>
+                            <select id="exportParticipantSelect" onchange="app.setExportByParticipant(this.value)"
+                                class="w-full px-2.5 py-1.5 rounded-xl bg-m3-surfaceVariant text-[11px] font-extrabold text-stone-800 border border-stone-300/70 focus:outline-none focus:ring-2 focus:ring-m3-primary">
+                                <option value="all">Todas las clientas</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1 min-w-0">
+                            <label class="text-[10px] font-extrabold uppercase text-stone-500 block truncate">Por # de Turno</label>
+                            <select id="exportTurnSelect" onchange="app.setExportByTurn(this.value)"
+                                class="w-full px-2.5 py-1.5 rounded-xl bg-m3-surfaceVariant text-[11px] font-extrabold text-stone-800 border border-stone-300/70 focus:outline-none focus:ring-2 focus:ring-m3-primary">
+                                <option value="all">Todos los turnos</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-extrabold uppercase text-stone-500 block">Por Categoría (1 en especial o Todas)</label>
+                        <select id="exportCategorySelect" onchange="app.setExportByCategory(this.value)"
+                            class="w-full px-2.5 py-1.5 rounded-xl bg-m3-surfaceVariant text-[11px] font-extrabold text-stone-800 border border-stone-300/70 focus:outline-none focus:ring-2 focus:ring-m3-primary">
+                            <option value="all">Todas las categorías</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="flex-1 min-h-0 overflow-hidden flex flex-col space-y-1.5">
@@ -2697,7 +2741,7 @@ openAuthModal() {
                                             <div class="rounded-xl p-2.5 border ${prod.pending ? 'bg-amber-50 border-amber-300' : 'bg-m3-bg/60 border-stone-200/80'} space-y-1">
                                                 <div class="flex items-center justify-between gap-1.5">
                                                     <div class="flex items-center gap-1.5 min-w-0">
-                                                        <span style="background-color:${catColor.bg}; color:${catColor.text}; border-color:${catColor.border};" class="text-[9px] font-extrabold px-1.5 py-0.5 rounded border whitespace-nowrap shrink-0">${this.escapeHtml(prod.category)}</span>
+                                                        <span style="background-color:${catColor.bg}; color:${catColor.text}; border-color:${catColor.border};" class="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full border whitespace-nowrap shrink-0">${this.escapeHtml(prod.category)}</span>
                                                         <span class="text-[10px] font-bold text-stone-500 truncate">Cód:<span class="font-mono ml-0.5">${this.escapeHtml(cleanCode)}</span></span>
                                                         ${prod.pending ? `<span class="text-[9px] font-extrabold px-1.5 py-0.2 rounded-full bg-amber-200 text-amber-950">Pendiente</span>` : ''}
                                                     </div>
@@ -2909,7 +2953,7 @@ openAuthModal() {
 
                                 html += `
                                     <div onclick="app.navigateToParticipantOrder('${p.id}')" class="cursor-pointer bg-white rounded-[26px] p-3.5 shadow-xs border ${gIdx === 0 ? 'border-m3-primary/30' : 'border-purple-900/10'} space-y-2.5 transition-all hover:border-m3-primary">
-                                        <div class="flex items-center justify-between gap-2">
+                                        <div class="flex items-start justify-between gap-2">
                                             <div class="flex items-center gap-2.5 min-w-0">
                                                 <div class="w-10 h-10 rounded-2xl ${gIdx === 0 ? 'bg-m3-primary text-white' : 'bg-m3-tertiaryContainer text-m3-tertiary'} font-extrabold text-sm flex items-center justify-center shrink-0 shadow-2xs">
                                                     #${p.turnNumber}
@@ -2919,18 +2963,20 @@ openAuthModal() {
                                                         <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full ${gIdx === 0 ? 'bg-m3-primaryContainer text-m3-primary' : 'bg-stone-100 text-stone-600'} whitespace-nowrap shrink-0">
                                                             ${gIdx === 0 ? 'Entrega Inmediata' : 'Siguiente Turno'}
                                                         </span>
-                                                        <span class="text-[11px] font-bold text-stone-500 whitespace-nowrap shrink-0">${delDate}</span>
                                                     </div>
-                                                    <h3 class="text-sm font-extrabold text-stone-900 mt-0.5 flex items-center gap-1 truncate">
+                                                    <h3 class="text-sm font-extrabold text-stone-900 mt-1 flex items-center gap-1 truncate">
                                                         <span class="truncate">${this.escapeHtml(p.name)}</span>
                                                         <span class="material-symbols-rounded text-xs text-m3-primary shrink-0">open_in_new</span>
                                                     </h3>
                                                 </div>
                                             </div>
-                                            <button type="button" onclick="event.stopPropagation(); app.toggleDelivered('${p.id}')" class="tap-scale px-3 py-2 rounded-full bg-m3-primary text-white shadow-2xs text-[11px] font-extrabold flex items-center gap-1 shrink-0 whitespace-nowrap">
-                                                <span class="material-symbols-rounded text-sm">local_shipping</span>
-                                                <span>Entregar</span>
-                                            </button>
+                                            <div class="flex flex-col items-end gap-1 shrink-0">
+                                                <span class="text-[10px] font-extrabold text-stone-500 whitespace-nowrap pr-1">${delDate}</span>
+                                                <button type="button" onclick="event.stopPropagation(); app.toggleDelivered('${p.id}')" class="tap-scale px-3 py-1.5 rounded-full bg-m3-primary text-white shadow-2xs text-[11px] font-extrabold flex items-center gap-1 shrink-0 whitespace-nowrap">
+                                                    <span class="material-symbols-rounded text-sm">local_shipping</span>
+                                                    <span>Entregar</span>
+                                                </button>
+                                            </div>
                                         </div>
                                         <div class="bg-m3-surfaceVariant/55 rounded-xl px-3 py-1.5 flex items-center justify-between gap-2 text-xs js-q-row">
                                             <p class="text-[11px] font-semibold text-stone-700 truncate">${this.escapeHtml(prodPreview || 'Sin productos')}</p>
@@ -2940,6 +2986,7 @@ openAuthModal() {
                                 `;
                             });
                         });
+
 
                         if (turnGroups.length > 1) {
                             const nextTurnNum = turnGroups[1].turnNumber;
@@ -2994,7 +3041,7 @@ openAuthModal() {
                                     <div class="min-w-0">
                                         <div class="flex items-center gap-1.5">
                                             <span class="text-[10px] font-extrabold px-2 py-0.2 rounded-full bg-amber-200/80 text-amber-950 whitespace-nowrap shrink-0">Turno #${item.participant.turnNumber} • ${this.escapeHtml(item.participant.name)}</span>
-                                            <span style="background-color:${catColor.bg}; color:${catColor.text}; border-color:${catColor.border};" class="text-[10px] font-extrabold px-2 py-0.2 rounded-md border whitespace-nowrap shrink-0">${this.escapeHtml(item.product.category)}</span>
+                                            <span style="background-color:${catColor.bg}; color:${catColor.text}; border-color:${catColor.border};" class="text-[10px] font-extrabold px-2 py-0.2 rounded-full border whitespace-nowrap shrink-0">${this.escapeHtml(item.product.category)}</span>
                                         </div>
                                         <p class="text-xs font-extrabold text-stone-900 truncate mt-0.5">${item.product.qty}x ${this.escapeHtml(item.product.description)} <span class="font-mono text-[10px] text-stone-500">(${this.escapeHtml(item.product.code)})</span></p>
                                     </div>
@@ -3050,7 +3097,7 @@ openAuthModal() {
                                 <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
                                     <span class="material-symbols-rounded text-base">verified</span>
                                 </div>
-                                <p class="text-xs font-bold text-emerald-800">¡Excelente! Sin atrasos vencidos en la Q ${tanda.currentQuincena}${graceNotice}.</p>
+                                <p class="text-xs font-bold text-emerald-800">¡Excelente! Sin atrasos en la Quincena ${tanda.currentQuincena}${graceNotice}.</p>
                             </div>
                         `;
                     } else {
@@ -3410,7 +3457,7 @@ openAuthModal() {
                             <div class="rounded-2xl p-3 border transition-all overflow-hidden ${prod.pending ? 'bg-amber-50/90 border-amber-300' : 'bg-m3-bg/55 border-stone-200/80'} space-y-1.5">
                                 <div class="flex items-center justify-between gap-2">
                                     <div class="flex items-center gap-1.5 min-w-0">
-                                        <span style="background-color:${catColor.bg}; color:${catColor.text}; border-color:${catColor.border};" class="text-[10px] font-extrabold px-2 py-0.5 rounded-md border whitespace-nowrap shrink-0">${this.escapeHtml(prod.category)}</span>
+                                        <span style="background-color:${catColor.bg}; color:${catColor.text}; border-color:${catColor.border};" class="text-[10px] font-extrabold px-2 py-0.5 rounded-full border whitespace-nowrap shrink-0">${this.escapeHtml(prod.category)}</span>
                                         <span class="text-[11px] font-bold text-stone-600 truncate">Cód:<span class="font-mono ml-0.5">${this.escapeHtml(cleanCode)}</span></span>
                                         ${prod.pending ? `<span class="text-[10px] font-extrabold px-1.5 py-0.2 rounded-full bg-amber-200 text-amber-950 whitespace-nowrap shrink-0">Pendiente</span>` : ''}
                                     </div>
@@ -3657,12 +3704,12 @@ openAuthModal() {
                                     </div>
                                     <div class="min-w-0">
                                         <h2 class="text-xs font-extrabold uppercase tracking-wider text-stone-800 truncate">Utilidad y Liquidez</h2>
-                                        <p class="text-[10px] font-semibold text-stone-500 truncate">Cobro cada Quin: <strong class="text-m3-primary">${this.formatMoneyCeil(regularQuincenaPool)}</strong> • Ganancia total: <strong class="text-emerald-700">+${this.formatMoneyCeil(totalTandaProfit)}</strong></p>
+                                        <p class="text-[10px] font-semibold text-stone-500 truncate">Cobro x Q: <strong class="text-m3-primary">${this.formatMoneyCeil(regularQuincenaPool)}</strong> • Ganancia: <strong class="text-emerald-500">${this.formatMoneyCeil(totalTandaProfit)}</strong></p>
                                     </div>
                                 </div>
                                 <button type="button" onclick="app.toggleTurnsSimulator()" class="tap-scale px-2.5 py-1 rounded-full bg-m3-primaryContainer text-m3-primary text-[10px] font-extrabold whitespace-nowrap shrink-0 flex items-center gap-0.5">
                                     <span class="material-symbols-rounded text-xs">person_add</span>
-                                    <span>${this.state.turnsSimulatorExpanded ? 'Ocultar' : '¿Meter alguien?'}</span>
+                                    <span>${this.state.turnsSimulatorExpanded ? 'Ocultar' : ''}</span>
                                 </button>
                             </div>
 
@@ -3753,7 +3800,7 @@ openAuthModal() {
                         liquidityBadge = `
                             <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full ${isBestRecommended ? 'bg-emerald-600 text-white' : 'bg-emerald-50 text-emerald-800 border border-emerald-200'} flex items-center gap-1 whitespace-nowrap">
                                 <span class="material-symbols-rounded text-[12px]">${isBestRecommended ? 'star' : 'savings'}</span>
-                                <span>${isBestRecommended ? 'Ideal • ' : ''}Sobra +${this.formatMoneyCeil(cashSurplus)} en Q${p.turnNumber}</span>
+                                <span>${isBestRecommended ? 'Ideal • ' : ''}Sobra +${this.formatMoneyCeil(cashSurplus)} en #${p.turnNumber}</span>
                             </span>
                         `;
                     } else {
@@ -3782,7 +3829,7 @@ openAuthModal() {
                                         </div>
                                         <p class="text-[11px] font-semibold text-stone-500 flex items-center gap-1 truncate mt-0.5">
                                             <span class="material-symbols-rounded text-xs text-m3-primary">local_shipping</span>
-                                            <span>Entrega Q${p.turnNumber}: ${delDate}</span>
+                                            <span>Entrega: ${delDate}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -3837,6 +3884,37 @@ openAuthModal() {
                 const tanda = this.getActiveTanda();
                 const container = document.getElementById('notesListContainer');
                 if (!tanda || !container) return;
+
+                // --- INICIO BLOQUE NUEVO: Mostrar notas fijadas en la pestaña Inicio ---
+                const pinnedSection = document.getElementById('pinnedNotesOverviewSection');
+                const pinnedContainer = document.getElementById('pinnedNotesOverviewContainer');
+                const pinnedCounter = document.getElementById('pinnedNotesHeaderCounter');
+                const pinnedNotes = (tanda.notes || []).filter(n => Boolean(n.pinned));
+
+                if (pinnedSection && pinnedContainer) {
+                    if (pinnedNotes.length === 0) {
+                        pinnedSection.classList.add('hidden');
+                    } else {
+                        pinnedSection.classList.remove('hidden');
+                        if (pinnedCounter) pinnedCounter.textContent = pinnedNotes.length;
+                        pinnedContainer.innerHTML = pinnedNotes.map(n => `
+                            <article onclick="app.switchTab('notes'); app.startEditNote('${n.id}');" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-2xs border border-m3-primary/35 space-y-1.5 transition-all hover:border-m3-primary">
+                                <div class="flex items-center justify-between gap-2">
+                                    <div class="flex items-center gap-1.5 min-w-0">
+                                        <span class="material-symbols-rounded text-xs text-m3-primary shrink-0">keep</span>
+                                        <h3 class="text-xs font-extrabold text-stone-900 truncate">${this.escapeHtml(n.title || 'Nota sin título')}</h3>
+                                        <span class="text-[10px] font-semibold text-stone-400 shrink-0">• ${this.escapeHtml(n.updatedAt || '')}</span>
+                                    </div>
+                                    <button type="button" onclick="event.stopPropagation(); app.togglePinNote('${n.id}')" title="Quitar de inicio" class="tap-scale w-6 h-6 rounded-full bg-m3-primary text-white flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-rounded text-[11px]">keep</span>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-stone-700 whitespace-pre-line leading-relaxed">${this.escapeHtml(n.content)}</p>
+                            </article>
+                        `).join('');
+                    }
+                }
+                // --- FIN BLOQUE NUEVO ---
 
                 const notes = [...(tanda.notes || [])]
                     .filter(n => {
@@ -4894,7 +4972,7 @@ openAuthModal() {
                         <div class="bg-white p-3 rounded-2xl border border-stone-200/80 space-y-2 shadow-2xs">
                             <div class="flex items-center justify-between gap-2">
                                 <span style="background-color:${currentColor.bg}; color:${currentColor.text}; border-color:${currentColor.border};"
-                                    class="text-xs font-extrabold px-2.5 py-1 rounded-lg border inline-flex items-center gap-1.5">
+                                    class="text-xs font-extrabold px-2.5 py-1 rounded-full border inline-flex items-center gap-1.5">
                                     <span class="material-symbols-rounded text-xs">sell</span>
                                     <span>${this.escapeHtml(cat)}</span>
                                 </span>
@@ -5149,6 +5227,10 @@ openAuthModal() {
             openExportModal(scope = 'pending', participantId = null) {
                 this.state.exportScope = scope;
                 this.state.singleExportParticipantId = participantId;
+                this.state.exportTurnNumber = 'all';
+                this.state.exportCategory = 'all';
+                this.populateExportFilters();
+                this.updateExportScopeButtonsUI();
                 this.updateExportPreview();
                 this.openModalWithHistory('exportOrders', 'exportOrdersModal');
             },
@@ -5157,16 +5239,110 @@ openAuthModal() {
                 this.closeModalWithHistory('exportOrders');
             },
 
-            setExportScope(scope) {
-                this.state.exportScope = scope;
-                this.state.singleExportParticipantId = null;
+            populateExportFilters() {
+                const tanda = this.getActiveTanda();
+                if (!tanda) return;
+
+                const participantSelect = document.getElementById('exportParticipantSelect');
+                const turnSelect = document.getElementById('exportTurnSelect');
+                const categorySelect = document.getElementById('exportCategorySelect');
+
+                // 1. Llenar selector por Nombre (orden alfabético)
+                if (participantSelect) {
+                    const byName = [...(tanda.participants || [])].sort((a, b) =>
+                        String(a.name || '').localeCompare(String(b.name || ''), 'es')
+                    );
+                    participantSelect.innerHTML = `<option value="all">Todas las clientas</option>` +
+                        byName.map(p => `<option value="${p.id}">${this.escapeHtml(p.name)} (Turno #${p.turnNumber})</option>`).join('');
+                    participantSelect.value = (this.state.exportScope === 'single' && this.state.singleExportParticipantId)
+                        ? this.state.singleExportParticipantId
+                        : 'all';
+                }
+
+                // 2. Llenar selector por # de Turno (orden numérico)
+                if (turnSelect) {
+                    const turnMap = new Map();
+                    [...(tanda.participants || [])]
+                        .sort((a, b) => a.turnNumber - b.turnNumber)
+                        .forEach(p => {
+                            const tNum = Number(p.turnNumber) || 1;
+                            if (!turnMap.has(tNum)) turnMap.set(tNum, []);
+                            turnMap.get(tNum).push(p.name);
+                        });
+
+                    let turnOptionsHtml = `<option value="all">Todos los turnos</option>`;
+                    turnMap.forEach((names, tNum) => {
+                        turnOptionsHtml += `<option value="${tNum}">Turno #${tNum} (${this.escapeHtml(names.join(', '))})</option>`;
+                    });
+                    turnSelect.innerHTML = turnOptionsHtml;
+                    turnSelect.value = this.state.exportTurnNumber || 'all';
+                }
+
+                // 3. Llenar selector por Categoría (Todas o 1 en especial)
+                if (categorySelect) {
+                    const cats = tanda.categories || [];
+                    categorySelect.innerHTML = `<option value="all">Todas las categorías</option>` +
+                        cats.map(c => `<option value="${this.escapeHtml(c)}">Solo categoría: ${this.escapeHtml(c)}</option>`).join('');
+                    categorySelect.value = this.state.exportCategory || 'all';
+                }
+            },
+
+            updateExportScopeButtonsUI() {
                 ['pending', 'next', 'all'].forEach(s => {
                     const btn = document.getElementById(`exportScope-${s}`);
                     if (!btn) return;
-                    btn.className = s === scope
+                    btn.className = s === this.state.exportScope
                         ? 'tap-scale px-3 py-1.5 rounded-full text-xs font-bold bg-m3-primary text-white'
                         : 'tap-scale px-3 py-1.5 rounded-full text-xs font-bold bg-m3-surfaceVariant text-stone-700';
                 });
+            },
+
+            setExportScope(scope) {
+                this.state.exportScope = scope;
+                this.state.singleExportParticipantId = null;
+                this.state.exportTurnNumber = 'all';
+
+                const participantSelect = document.getElementById('exportParticipantSelect');
+                const turnSelect = document.getElementById('exportTurnSelect');
+                if (participantSelect) participantSelect.value = 'all';
+                if (turnSelect) turnSelect.value = 'all';
+
+                this.updateExportScopeButtonsUI();
+                this.updateExportPreview();
+            },
+
+            setExportByParticipant(participantId) {
+                const turnSelect = document.getElementById('exportTurnSelect');
+                if (turnSelect) turnSelect.value = 'all';
+                this.state.exportTurnNumber = 'all';
+
+                if (!participantId || participantId === 'all') {
+                    this.setExportScope('all');
+                    return;
+                }
+                this.state.exportScope = 'single';
+                this.state.singleExportParticipantId = participantId;
+                this.updateExportScopeButtonsUI();
+                this.updateExportPreview();
+            },
+
+            setExportByTurn(turnNumberVal) {
+                const participantSelect = document.getElementById('exportParticipantSelect');
+                if (participantSelect) participantSelect.value = 'all';
+                this.state.singleExportParticipantId = null;
+
+                if (!turnNumberVal || turnNumberVal === 'all') {
+                    this.setExportScope('all');
+                    return;
+                }
+                this.state.exportScope = 'turn';
+                this.state.exportTurnNumber = String(turnNumberVal);
+                this.updateExportScopeButtonsUI();
+                this.updateExportPreview();
+            },
+
+            setExportByCategory(categoryVal) {
+                this.state.exportCategory = categoryVal || 'all';
                 this.updateExportPreview();
             },
 
@@ -5178,6 +5354,8 @@ openAuthModal() {
                 let targetParticipants = [];
                 if (this.state.exportScope === 'single' && this.state.singleExportParticipantId) {
                     targetParticipants = sorted.filter(p => p.id === this.state.singleExportParticipantId);
+                } else if (this.state.exportScope === 'turn' && this.state.exportTurnNumber && this.state.exportTurnNumber !== 'all') {
+                    targetParticipants = sorted.filter(p => String(p.turnNumber) === String(this.state.exportTurnNumber));
                 } else if (this.state.exportScope === 'next') {
                     const firstUndel = sorted.find(p => !p.delivered);
                     targetParticipants = firstUndel ? sorted.filter(p => p.turnNumber === firstUndel.turnNumber && !p.delivered) : [];
@@ -5187,10 +5365,12 @@ openAuthModal() {
                     targetParticipants = sorted;
                 }
 
+                const selectedCat = this.state.exportCategory || 'all';
                 const rows = [];
                 targetParticipants.forEach(p => {
                     const delDate = this.getTurnDeliveryDate(tanda.startDate, p.turnNumber, tanda.quincenasCount);
                     (p.products || []).forEach(prod => {
+                        if (selectedCat !== 'all' && prod.category !== selectedCat) return;
                         rows.push({
                             turno: `#${p.turnNumber}`,
                             fechaEntrega: delDate,
@@ -5400,7 +5580,7 @@ openAuthModal() {
 
                             doc.setFillColor(bgRgb[0], bgRgb[1], bgRgb[2]);
                             doc.setDrawColor(brdRgb[0], brdRgb[1], brdRgb[2]);
-                            doc.roundedRect(margin + 5, itemY + 2, catW, 5.8, 1.4, 1.4, 'FD');
+                            doc.roundedRect(margin + 5, itemY + 2, catW, 5.8, 2.9, 2.9, 'FD');
                             doc.setTextColor(txtRgb[0], txtRgb[1], txtRgb[2]);
                             doc.text(catLabel, margin + 5 + catW / 2, itemY + 5.9, { align: 'center' });
 
@@ -5555,7 +5735,7 @@ openAuthModal() {
                                 font-size: 12px;
                                 font-weight: 800;
                                 padding: 2px 7px;
-                                border-radius: 6px;
+                                border-radius: 999px;
                                 border: 1px solid transparent;
                             }
                             .code-text { font-family: monospace; font-size: 15px; font-weight: 800; color: #2D262A; }
